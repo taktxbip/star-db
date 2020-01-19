@@ -1,0 +1,40 @@
+.header {
+	padding: 20px 0;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: baseline;
+}
+
+.header-logo {
+	font-size: 30px;
+	margin-right: 50px;
+}
+
+.star-nav {
+
+}
+
+
+.star-nav ul {
+	list-style: none;
+}
+
+
+.star-nav ul li {
+	display: inline-block;
+	margin-right: 40px;
+}
+
+
+.star-nav ul li span {
+	color: #fff;
+	transition: .2s ease-in-out;
+}
+
+
+.star-nav ul li span:hover { 
+	cursor: pointer;
+	color: tomato;
+}
