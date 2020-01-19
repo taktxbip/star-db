@@ -1,4 +1,16 @@
 .app-list.list-group {
 	width: 100%;
 	margin-bottom: 32px;
+	min-height: 100px;
+	background-color: #4E5D6C;
+	position: relative;
+}
+
+.list-group-item {
+	transition: .2s ease-in-out;
+	text-transform: capitalize;
+}
+
+.list-group-item:hover {
+	cursor: pointer;
 }
