@@ -6,7 +6,7 @@
 	justify-content: flex-start;
 }
 
-.random-planet img {
+.random-planet .planet-image {
 	width: 150px;
 	height: auto;
 	display: block;

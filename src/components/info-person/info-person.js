@@ -5,7 +5,7 @@ const InfoPerson = () => {
 
 	return (
 		<div className="random-planet jumbotron">
-			<img alt="planet" src="https://i.picsum.photos/id/729/500/500.jpg" />
+			<img className="planet-image" alt="planet" src="https://i.picsum.photos/id/729/500/500.jpg" />
       <div className="random-planet-descr">
         <h3>Person Name</h3>
         <ul className="list-group random-planet-table">
