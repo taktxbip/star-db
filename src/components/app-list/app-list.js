@@ -1,14 +1,11 @@
 import React, { Component } from "react";
-import SwapiService from "../../services/swapi-service";
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 import "./app-list.css";
 
 export default class AppList extends Component {
-  swapiService = new SwapiService();
-
   state = {
-    peopleList: null,
+    itemList: null,
     loading: true,
     error: false
   };
@@ -20,32 +17,35 @@ export default class AppList extends Component {
     });
   };
 
-  onListLoaded = peopleList => {
+  onListLoaded = itemList => {
     this.setState({
-      peopleList,
+      itemList,
       loading: false,
       error: false
     });
   };
 
   componentDidMount() {
-    this.swapiService
-      .getAllPeople()
+    const { getData } = this.props;
+    getData()
       .then(this.onListLoaded)
       .catch(this.onError);
   }
 
   renderItems(arr, current) {
     if (arr) {
-      return arr.map(({ id, name }) => {
-				const currentClass = current === id ? ' active' : null;
+      return arr.map(( item ) => {
+
+				const { id } = item;
+				const label = this.props.renderItem(item);
+        const currentClass = current === id ? " active" : '';
         return (
           <li
             className={`list-group-item list-group-item-action${currentClass}`}
-						key={id}
-						onClick = { () => this.props.onItemSelected(id) }
+            key={id}
+            onClick={() => this.props.onItemSelected(id)}
           >
-            {name}
+            { label }
           </li>
         );
       });
@@ -53,12 +53,12 @@ export default class AppList extends Component {
   }
 
   render() {
-		const { peopleList, loading, error } = this.state;
-		const { currentItem } = this.props;
+    const { itemList, loading, error } = this.state;
+    const { currentItem } = this.props;
 
     const spinner = loading ? <Spinner /> : null;
     const errorMessage = error ? <ErrorIndicator /> : null;
-		const items = this.renderItems(peopleList, currentItem);
+    const items = this.renderItems(itemList, currentItem);
 
     return (
       <div className="app-list list-group">

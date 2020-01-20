@@ -11,6 +11,13 @@
 	text-transform: capitalize;
 }
 
+.list-group-item span {
+	text-align: right;
+	color: rgba(255,255,255, .3);
+	float: right;
+	font-size: 12px;
+}
+
 .list-group-item:hover {
 	cursor: pointer;
 }
