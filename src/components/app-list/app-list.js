@@ -1,71 +1,36 @@
-import React, { Component } from "react";
-import Spinner from "../spinner";
+import React from "react";
 import ErrorIndicator from "../error-indicator";
 import "./app-list.css";
 
-export default class AppList extends Component {
-  state = {
-    itemList: null,
-    loading: true,
-    error: false
-  };
+const AppList = ( props ) => {
 
-  onError = err => {
-    this.setState({
-      error: true,
-      loading: false
-    });
-  };
+		const { currentItem, data, error, onItemSelected } = props;
 
-  onListLoaded = itemList => {
-    this.setState({
-      itemList,
-      loading: false,
-      error: false
-    });
-  };
+		const items = data.map(( item ) => {
 
-  componentDidMount() {
-    const { getData } = this.props;
-    getData()
-      .then(this.onListLoaded)
-      .catch(this.onError);
-  }
-
-  renderItems(arr, current) {
-    if (arr) {
-      return arr.map(( item ) => {
-
-				const { id } = item;
-				const label = this.props.renderItem(item);
-        const currentClass = current === id ? " active" : '';
-        return (
-          <li
-            className={`list-group-item list-group-item-action${currentClass}`}
-            key={id}
-            onClick={() => this.props.onItemSelected(id)}
-          >
-            { label }
-          </li>
-        );
-      });
-    }
-  }
-
-  render() {
-    const { itemList, loading, error } = this.state;
-    const { currentItem } = this.props;
-
-    const spinner = loading ? <Spinner /> : null;
-    const errorMessage = error ? <ErrorIndicator /> : null;
-    const items = this.renderItems(itemList, currentItem);
+			const { id } = item;
+			const label = props.children(item);
+			const currentClass = currentItem === id ? " active" : '';
+			return (
+				<li
+					className={`list-group-item list-group-item-action${currentClass}`}
+					key={id}
+					onClick={() => onItemSelected(id)}
+				>
+					{ label }
+				</li>
+			);
+		});
+		
+		const errorMessage = error ? <ErrorIndicator /> : null;
 
     return (
       <div className="app-list list-group">
         {errorMessage}
-        {spinner}
         {items}
       </div>
     );
-  }
-}
+  
+};
+
+export default AppList;

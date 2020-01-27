@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 
-const Header = () => {
+const Header = ({ onServiceChange }) => {
 
 	return (
 		<div className="header">
@@ -12,6 +12,9 @@ const Header = () => {
 				<li><span>Planets</span></li>
 				<li><span>Starships</span></li>
 			</ul>
+			<button 
+			onClick = { onServiceChange }
+			className="btn btn-primary btn-sm">Change Service</button>
 			</nav>
 		</div>
 	);

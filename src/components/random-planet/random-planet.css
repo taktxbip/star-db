@@ -3,6 +3,7 @@
 	padding: 3rem;
 	display: flex;
 	flex-direction: row;
+	align-items: self-start;
 	justify-content: flex-start;
 	position: relative;
 }
@@ -25,6 +26,10 @@
 }
 
 .random-planet-table li span {
+	margin-left: 20px;
+}
+
+.random-planet-table li strong {
 	margin-left: 20px;
 }
 
