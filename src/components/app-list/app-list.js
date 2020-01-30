@@ -6,6 +6,9 @@ const AppList = ( props ) => {
 
 		const { currentItem, data, error, onItemSelected } = props;
 
+		// console.log('currentItem: ', currentItem);
+		// console.log('props: ', props);
+
 		const items = data.map(( item ) => {
 
 			const { id } = item;

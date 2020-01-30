@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Spinner from "../spinner";
+import ErrorIndicator from '../error-indicator';
 
 const withData = (View) => {
 	return class extends Component {
@@ -11,13 +12,23 @@ const withData = (View) => {
 		};
 	
 		componentDidMount() {
-	
+			this.update();
+		}
+
+
+		update = () => {
 			this.props.getData()
 				.then(this.onListLoaded)
 				.catch(this.onError);
 		}
 
-		onError = err => {
+		componentDidUpdate = (prevProps) => {
+			if ( this.props.getData !== prevProps.getData ) {
+				this.update();
+			}
+		}
+
+		onError = () => {
 			this.setState({
 				error: true,
 				loading: false
@@ -39,8 +50,13 @@ const withData = (View) => {
 			const { data, error } = this.state;
 
 
+
+
 			if (!data)
 				return <Spinner />
+
+			if (error)
+				return <ErrorIndicator />
 
 			return <View { ...this.props} currentItem={ currentItem } data={ data } error = { error } />
 		}
