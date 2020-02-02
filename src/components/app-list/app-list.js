@@ -1,13 +1,12 @@
 import React from "react";
 import ErrorIndicator from "../error-indicator";
+import PropTypes from 'prop-types';
 import "./app-list.css";
+
 
 const AppList = ( props ) => {
 
 		const { currentItem, data, error, onItemSelected } = props;
-
-		// console.log('currentItem: ', currentItem);
-		// console.log('props: ', props);
 
 		const items = data.map(( item ) => {
 
@@ -35,5 +34,14 @@ const AppList = ( props ) => {
     );
   
 };
+
+AppList.defaultProps = {
+	onItemSelected: () => {}
+}
+AppList.propTypes = {
+	onItemSelected: PropTypes.func,
+	data: PropTypes.arrayOf(PropTypes.object).isRequired,
+	children: PropTypes.func.isRequired
+}
 
 export default AppList;

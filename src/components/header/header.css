@@ -10,6 +10,15 @@
 .header-logo {
 	font-size: 30px;
 	margin-right: 50px;
+	text-decoration: none;
+	color: #fff;
+	transition: .2s ease-in-out;
+}
+
+.header-logo:hover {
+	cursor: pointer;
+	color: tomato;
+	text-decoration: none;
 }
 
 
@@ -30,13 +39,14 @@
 }
 
 
-.star-nav ul li span {
+.star-nav ul li a {
 	color: #fff;
 	transition: .2s ease-in-out;
 }
 
 
-.star-nav ul li span:hover { 
+.star-nav ul li a:hover { 
 	cursor: pointer;
+	text-decoration: none;
 	color: tomato;
 }
